@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a vehicle",
+        "data": {
+          "name": "Vehicle name",
+          "mac_address": "Vehicle Bluetooth MAC address",
+          "picture": "Picture (path or URL, optional)"
+        }
+      },
+      "person": {
+        "title": "Link a person",
+        "description": "Pick the phone's Bluetooth sensor to watch and the matching person. The first person added is used as the fallback location source when nobody's phone is currently paired with the vehicle.",
+        "data": {
+          "phone_sensor": "Phone Bluetooth sensor",
+          "person": "Person",
+          "add_another": "Add another person"
+        }
+      }
+    }
+  }
+}

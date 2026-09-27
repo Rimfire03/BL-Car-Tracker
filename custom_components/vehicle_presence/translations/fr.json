@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ajouter un véhicule",
+        "data": {
+          "name": "Nom du véhicule",
+          "mac_address": "Adresse MAC Bluetooth du véhicule",
+          "picture": "Image (chemin ou URL, optionnel)"
+        }
+      },
+      "person": {
+        "title": "Associer une personne",
+        "description": "Choisissez le capteur Bluetooth du téléphone à surveiller ainsi que la personne correspondante. La première personne ajoutée sert de source de localisation par défaut lorsque aucun téléphone connu n'est appairé avec le véhicule.",
+        "data": {
+          "phone_sensor": "Capteur Bluetooth du téléphone",
+          "person": "Personne",
+          "add_another": "Ajouter une autre personne"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "domain": "vehicle_presence",
+  "name": "Vehicle Presence",
+  "codeowners": ["@TODO-your-github-username"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/TODO-your-github-username/Car-Tracker",
+  "issue_tracker": "https://github.com/TODO-your-github-username/Car-Tracker/issues",
+  "iot_class": "calculated",
+  "requirements": [],
+  "version": "0.1.0"
+}
