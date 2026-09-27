@@ -11,7 +11,7 @@ Pour chaque véhicule configuré, l'intégration crée une entité `binary_senso
 
 ### Via HACS (dépôt personnalisé)
 
-1. HACS → menu (⋮) → **Dépôts personnalisés** → ajouter l'URL de ce dépôt GitHub, catégorie *Intégration*.
+1. HACS → menu (⋮) → **Dépôts personnalisés** → ajouter `https://github.com/Rimfire03/Car-Tracker`, catégorie *Intégration*.
 2. Rechercher **Vehicle Presence** dans HACS et installer.
 3. Redémarrer Home Assistant.
 
@@ -30,12 +30,7 @@ Entièrement via l'interface (**Paramètres → Appareils et services → Ajoute
 
 ## Statut du projet
 
-⚠️ Avant publication sur HACS, mettre à jour dans `custom_components/vehicle_presence/manifest.json` :
-- `codeowners`
-- `documentation`
-- `issue_tracker`
-
-avec votre nom d'utilisateur GitHub et l'URL réelle du dépôt, puis créer une release Git taguée (ex. `v0.1.0`) — HACS s'appuie sur les tags/releases GitHub pour le versionnage.
+⚠️ Avant soumission à HACS, créer une release Git taguée (ex. `v0.1.0`) — HACS s'appuie sur les tags/releases GitHub pour le versionnage.
 
 ## Licence
 

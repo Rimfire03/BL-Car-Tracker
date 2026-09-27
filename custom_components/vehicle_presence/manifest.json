@@ -1,11 +1,11 @@
 {
   "domain": "vehicle_presence",
   "name": "Vehicle Presence",
-  "codeowners": ["@TODO-your-github-username"],
+  "codeowners": ["@Rimfire03"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/TODO-your-github-username/Car-Tracker",
-  "issue_tracker": "https://github.com/TODO-your-github-username/Car-Tracker/issues",
+  "documentation": "https://github.com/Rimfire03/Car-Tracker",
+  "issue_tracker": "https://github.com/Rimfire03/Car-Tracker/issues",
   "iot_class": "calculated",
   "requirements": [],
   "version": "0.1.0"
