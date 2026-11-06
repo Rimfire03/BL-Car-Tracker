@@ -2,31 +2,79 @@
   "config": {
     "step": {
       "user": {
-        "title": "Add a vehicle",
-        "description": "Each vehicle is identified by the Bluetooth MAC address of its on-board device (head unit, hands-free kit...).",
-        "data": {
-          "name": "Vehicle name",
-          "mac_address": "Vehicle Bluetooth MAC address",
-          "picture_file": "Picture (drop an image, optional)",
-          "picture": "Or picture URL (optional)"
+        "title": "BL Car Tracker",
+        "description": "Create the integration, then add persons and vehicles from its page."
+      }
+    }
+  },
+  "config_subentries": {
+    "person": {
+      "initiate_flow": {
+        "user": "Add person",
+        "reconfigure": "Edit person"
+      },
+      "entry_type": "Person",
+      "step": {
+        "user": {
+          "title": "Add a person",
+          "description": "Link a person to their phone's Bluetooth sensor (Companion app). Every person can drive the position of every vehicle. If several phones are connected to a vehicle, the first person added wins.",
+          "data": {
+            "person": "Person",
+            "phone_sensor": "Phone Bluetooth sensor"
+          }
+        },
+        "reconfigure": {
+          "title": "Edit a person",
+          "description": "Link a person to their phone's Bluetooth sensor (Companion app).",
+          "data": {
+            "person": "Person",
+            "phone_sensor": "Phone Bluetooth sensor"
+          }
         }
       },
-      "person": {
-        "title": "Link a person",
-        "description": "Pick the phone's Bluetooth sensor (Companion app) and the matching person. The vehicle copies the position of the person whose phone is connected to it. If several phones are connected, the first person added wins.",
-        "data": {
-          "phone_sensor": "Phone Bluetooth sensor",
-          "person": "Person",
-          "add_another": "Add another person"
-        }
+      "error": {
+        "duplicate_person": "This person is already added."
+      },
+      "abort": {
+        "reconfigure_successful": "Person updated."
       }
     },
-    "error": {
-      "invalid_mac": "Invalid MAC address. Expected format: AA:BB:CC:DD:EE:FF.",
-      "invalid_image": "Unsupported file. Use a PNG, JPG, GIF or WebP image."
-    },
-    "abort": {
-      "already_configured": "A vehicle with this MAC address is already configured."
+    "vehicle": {
+      "initiate_flow": {
+        "user": "Add vehicle",
+        "reconfigure": "Edit vehicle"
+      },
+      "entry_type": "Vehicle",
+      "step": {
+        "user": {
+          "title": "Add a vehicle",
+          "description": "A vehicle is identified by the Bluetooth MAC address of its on-board device (head unit, hands-free kit...).",
+          "data": {
+            "name": "Vehicle name",
+            "mac_address": "Vehicle Bluetooth MAC address",
+            "picture_file": "Picture (drop an image, optional)",
+            "picture": "Or picture URL (optional)"
+          }
+        },
+        "reconfigure": {
+          "title": "Edit a vehicle",
+          "description": "A vehicle is identified by the Bluetooth MAC address of its on-board device (head unit, hands-free kit...).",
+          "data": {
+            "name": "Vehicle name",
+            "mac_address": "Vehicle Bluetooth MAC address",
+            "picture_file": "Picture (drop an image, optional)",
+            "picture": "Or picture URL (optional)"
+          }
+        }
+      },
+      "error": {
+        "invalid_mac": "Invalid MAC address. Expected format: AA:BB:CC:DD:EE:FF.",
+        "duplicate_mac": "A vehicle with this MAC address already exists.",
+        "invalid_image": "Unsupported file. Use a PNG, JPG, GIF or WebP image."
+      },
+      "abort": {
+        "reconfigure_successful": "Vehicle updated."
+      }
     }
   }
 }

@@ -34,7 +34,11 @@ def save_picture(hass: HomeAssistant, file_id: str, name: str) -> str | None:
     return f"{MEDIA_URL}/{filename}"
 
 
-def delete_picture(hass: HomeAssistant, url: str | None) -> None:
-    """Delete a picture stored by `save_picture` (blocking). Ignores other URLs."""
-    if url and url.startswith(f"{MEDIA_URL}/"):
-        (media_path(hass) / url.removeprefix(f"{MEDIA_URL}/")).unlink(missing_ok=True)
+def prune_pictures(hass: HomeAssistant, keep: set[str | None]) -> None:
+    """Delete stored pictures whose URL is not in `keep` (blocking)."""
+    directory = media_path(hass)
+    if not directory.is_dir():
+        return
+    for file in directory.iterdir():
+        if f"{MEDIA_URL}/{file.name}" not in keep:
+            file.unlink(missing_ok=True)

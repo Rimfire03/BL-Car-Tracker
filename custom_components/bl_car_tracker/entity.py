@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from homeassistant.config_entries import ConfigEntry
+from collections.abc import Mapping
+from typing import Any
+
+from homeassistant.config_entries import ConfigEntry, ConfigSubentry
 from homeassistant.core import Event, EventStateChangedData, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
 
 from .const import (
@@ -13,31 +17,49 @@ from .const import (
     ATTR_CONNECTED_PERSON,
     CONF_MAC,
     CONF_PERSON,
-    CONF_PERSONS,
     CONF_PHONE_SENSOR,
     CONF_PICTURE,
     DOMAIN,
+    SUBENTRY_PERSON,
+    SUBENTRY_VEHICLE,
 )
+
+
+def add_vehicle_entities(
+    entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
+    entity_class: type[BLCarTrackerEntity],
+) -> None:
+    """Create one entity of `entity_class` per vehicle subentry."""
+    for subentry in entry.subentries.values():
+        if subentry.subentry_type == SUBENTRY_VEHICLE:
+            async_add_entities(
+                [entity_class(entry, subentry)],
+                config_subentry_id=subentry.subentry_id,
+            )
 
 
 class BLCarTrackerEntity(Entity):
     """Tracks which person's phone is connected to the vehicle's Bluetooth device.
 
-    Subclasses override `_refresh` to react to the result, then call super.
+    Every configured person can drive every vehicle. Subclasses override
+    `_refresh` to react to the result, then call super.
     """
 
     _attr_has_entity_name = True
     _attr_name = None  # entity takes the device (vehicle) name
     _attr_should_poll = False
 
-    def __init__(self, entry: ConfigEntry) -> None:
-        self._mac: str = entry.data[CONF_MAC]
-        self._persons: list[dict[str, str]] = entry.data[CONF_PERSONS]
+    def __init__(self, entry: ConfigEntry, subentry: ConfigSubentry) -> None:
+        self._mac: str = subentry.data[CONF_MAC]
+        self._persons: list[Mapping[str, Any]] = [
+            s.data for s in entry.subentries.values() if s.subentry_type == SUBENTRY_PERSON
+        ]
         self._connected_person: str | None = None
-        self._attr_unique_id = entry.entry_id
-        self._attr_entity_picture = entry.data.get(CONF_PICTURE)
+        self._attr_unique_id = subentry.subentry_id
+        self._attr_entity_picture = subentry.data.get(CONF_PICTURE)
         self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, entry.entry_id)}, name=entry.title
+            identifiers={(DOMAIN, subentry.subentry_id)}, name=subentry.title
         )
 
     async def async_added_to_hass(self) -> None:

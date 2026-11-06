@@ -6,17 +6,19 @@ from homeassistant.components.device_tracker import SourceType, TrackerEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_GPS_ACCURACY, ATTR_LATITUDE, ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 
-from .entity import BLCarTrackerEntity
+from .entity import BLCarTrackerEntity, add_vehicle_entities
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+    hass: HomeAssistant,
+    entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up the vehicle tracker from a config entry."""
-    async_add_entities([VehicleTracker(entry)])
+    """Set up one tracker per vehicle."""
+    add_vehicle_entities(entry, async_add_entities, VehicleTracker)
 
 
 class VehicleTracker(BLCarTrackerEntity, TrackerEntity, RestoreEntity):
