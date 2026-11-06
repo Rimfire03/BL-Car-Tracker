@@ -37,6 +37,10 @@ Entièrement via l'interface (**Paramètres → Appareils et services → Ajoute
 
 Un même MAC ne peut être configuré qu'une fois.
 
+## Mise à jour depuis la v0.1.0 (« Vehicle Presence »)
+
+Le domaine est passé de `vehicle_presence` à `bl_car_tracker` : l'ancienne intégration n'est plus chargée après la mise à jour. Supprimer ses entrées (**Paramètres → Appareils et services**), redémarrer, puis ajouter à nouveau chaque véhicule. Les entités changent : `binary_sensor.<véhicule>` ne porte plus la position, utiliser `device_tracker.<véhicule>`.
+
 ## Migration depuis des templates YAML
 
 Supprimer les anciens `binary_sensor` template (et leurs entrées du registre d'entités) avant d'ajouter le véhicule, pour que les nouvelles entités reprennent le même nom. Remplacer ensuite, dans les automatisations, le déclencheur de zone sur l'ancien `binary_sensor.<véhicule>` par `device_tracker.<véhicule>`.
