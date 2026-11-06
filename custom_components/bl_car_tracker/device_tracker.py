@@ -37,6 +37,11 @@ class VehicleTracker(BLCarTrackerEntity, TrackerEntity, RestoreEntity):
             self._attr_latitude = last.attributes.get(ATTR_LATITUDE)
             self._attr_longitude = last.attributes.get(ATTR_LONGITUDE)
             self._attr_location_accuracy = last.attributes.get(ATTR_GPS_ACCURACY) or 0
+        if self._attr_latitude is None or self._attr_longitude is None:
+            # No position yet: park at home so the vehicle always has a map marker.
+            self._attr_latitude = self.hass.config.latitude
+            self._attr_longitude = self.hass.config.longitude
+            self._attr_location_accuracy = 0
         await super().async_added_to_hass()
 
     @callback
