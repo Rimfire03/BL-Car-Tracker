@@ -1,4 +1,4 @@
-"""Shared base entity for the Vehicle Presence integration."""
+"""Shared base entity for the BL Car Tracker integration."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from .const import (
 )
 
 
-class VehiclePresenceEntity(Entity):
+class BLCarTrackerEntity(Entity):
     """Tracks which person's phone is connected to the vehicle's Bluetooth device.
 
     Subclasses override `_refresh` to react to the result, then call super.

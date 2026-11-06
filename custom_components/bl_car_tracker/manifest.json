@@ -1,6 +1,6 @@
 {
-  "domain": "vehicle_presence",
-  "name": "Vehicle Presence",
+  "domain": "bl_car_tracker",
+  "name": "BL Car Tracker",
   "codeowners": ["@Rimfire03"],
   "config_flow": true,
   "dependencies": [],

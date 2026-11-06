@@ -1,6 +1,6 @@
-"""Constants for the Vehicle Presence integration."""
+"""Constants for the BL Car Tracker integration."""
 
-DOMAIN = "vehicle_presence"
+DOMAIN = "bl_car_tracker"
 
 CONF_MAC = "mac_address"
 CONF_PICTURE = "picture"

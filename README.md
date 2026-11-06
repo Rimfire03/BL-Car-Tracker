@@ -1,4 +1,4 @@
-# Vehicle Presence (Car Tracker)
+# BL Car Tracker
 
 Intégration Home Assistant qui donne une position à un véhicule (voiture, moto, vélo…) en copiant celle de la personne dont le téléphone est connecté en Bluetooth à ce véhicule. Un appareil Bluetooth (autoradio, kit mains libres…) identifie chaque véhicule.
 
@@ -19,17 +19,17 @@ Si plusieurs téléphones sont connectés en même temps, la première personne 
 ### Via HACS (dépôt personnalisé)
 
 1. HACS → menu (⋮) → **Dépôts personnalisés** → ajouter `https://github.com/Rimfire03/Car-Tracker`, catégorie *Intégration*.
-2. Rechercher **Vehicle Presence** dans HACS et installer.
+2. Rechercher **BL Car Tracker** dans HACS et installer.
 3. Redémarrer Home Assistant.
 
 ### Manuellement
 
-1. Copier le dossier `custom_components/vehicle_presence` dans `<config>/custom_components/`.
+1. Copier le dossier `custom_components/bl_car_tracker` dans `<config>/custom_components/`.
 2. Redémarrer Home Assistant.
 
 ## Configuration
 
-Entièrement via l'interface (**Paramètres → Appareils et services → Ajouter une intégration → Vehicle Presence**) :
+Entièrement via l'interface (**Paramètres → Appareils et services → Ajouter une intégration → BL Car Tracker**) :
 
 1. Nom du véhicule, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle.
 2. Pour chaque personne : le capteur Bluetooth de son téléphone et la personne (`person.*`) correspondante.

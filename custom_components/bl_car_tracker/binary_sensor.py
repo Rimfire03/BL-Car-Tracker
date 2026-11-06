@@ -1,4 +1,4 @@
-"""Binary sensor platform for the Vehicle Presence integration."""
+"""Binary sensor platform for the BL Car Tracker integration."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .entity import VehiclePresenceEntity
+from .entity import BLCarTrackerEntity
 
 
 async def async_setup_entry(
@@ -20,7 +20,7 @@ async def async_setup_entry(
     async_add_entities([VehicleOccupancySensor(entry)])
 
 
-class VehicleOccupancySensor(VehiclePresenceEntity, BinarySensorEntity):
+class VehicleOccupancySensor(BLCarTrackerEntity, BinarySensorEntity):
     """On while a known person's phone is connected to the vehicle."""
 
     _attr_device_class = BinarySensorDeviceClass.OCCUPANCY

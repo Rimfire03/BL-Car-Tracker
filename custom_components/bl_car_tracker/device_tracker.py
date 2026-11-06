@@ -1,4 +1,4 @@
-"""Device tracker platform for the Vehicle Presence integration."""
+"""Device tracker platform for the BL Car Tracker integration."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 
-from .entity import VehiclePresenceEntity
+from .entity import BLCarTrackerEntity
 
 
 async def async_setup_entry(
@@ -19,7 +19,7 @@ async def async_setup_entry(
     async_add_entities([VehicleTracker(entry)])
 
 
-class VehicleTracker(VehiclePresenceEntity, TrackerEntity, RestoreEntity):
+class VehicleTracker(BLCarTrackerEntity, TrackerEntity, RestoreEntity):
     """Vehicle position, copied from the connected person.
 
     While a known phone is connected to the vehicle, the position follows that

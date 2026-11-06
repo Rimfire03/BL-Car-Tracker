@@ -1,4 +1,4 @@
-"""Config flow for the Vehicle Presence integration."""
+"""Config flow for the BL Car Tracker integration."""
 
 from __future__ import annotations
 
@@ -43,8 +43,8 @@ STEP_PERSON_SCHEMA = vol.Schema(
 )
 
 
-class VehiclePresenceConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Vehicle Presence."""
+class BLCarTrackerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for BL Car Tracker."""
 
     VERSION = 1
 
