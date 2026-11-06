@@ -17,8 +17,10 @@ from .const import (
     CONF_PERSONS,
     CONF_PHONE_SENSOR,
     CONF_PICTURE,
+    CONF_PICTURE_FILE,
     DOMAIN,
 )
+from .media import save_picture
 
 MAC_PATTERN = re.compile(r"^([0-9A-F]{2}[:-]){5}[0-9A-F]{2}$")
 
@@ -26,6 +28,9 @@ STEP_USER_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_NAME): str,
         vol.Required(CONF_MAC): str,
+        vol.Optional(CONF_PICTURE_FILE): selector.FileSelector(
+            selector.FileSelectorConfig(accept="image/*")
+        ),
         vol.Optional(CONF_PICTURE): str,
     }
 )
@@ -65,12 +70,20 @@ class BLCarTrackerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 mac = mac.replace("-", ":")
                 await self.async_set_unique_id(mac)
                 self._abort_if_unique_id_configured()
-                self._vehicle_data = {
-                    CONF_NAME: user_input[CONF_NAME],
-                    CONF_MAC: mac,
-                    CONF_PICTURE: user_input.get(CONF_PICTURE),
-                }
-                return await self.async_step_person()
+                picture = user_input.get(CONF_PICTURE)
+                if file_id := user_input.get(CONF_PICTURE_FILE):
+                    picture = await self.hass.async_add_executor_job(
+                        save_picture, self.hass, file_id, mac.replace(":", "").lower()
+                    )
+                    if picture is None:
+                        errors[CONF_PICTURE_FILE] = "invalid_image"
+                if not errors:
+                    self._vehicle_data = {
+                        CONF_NAME: user_input[CONF_NAME],
+                        CONF_MAC: mac,
+                        CONF_PICTURE: picture,
+                    }
+                    return await self.async_step_person()
 
         return self.async_show_form(
             step_id="user",

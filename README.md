@@ -31,7 +31,7 @@ Si plusieurs téléphones sont connectés en même temps, la première personne 
 
 Entièrement via l'interface (**Paramètres → Appareils et services → Ajouter une intégration → BL Car Tracker**) :
 
-1. Nom du véhicule, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle.
+1. Nom du véhicule, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle (glisser-déposer d'un PNG, JPG, GIF ou WebP, ou URL). Une image déposée est copiée dans `<config>/bl_car_tracker/` et servie sur `/bl_car_tracker/…` ; elle est supprimée avec le véhicule.
 2. Pour chaque personne : le capteur Bluetooth de son téléphone et la personne (`person.*`) correspondante.
 3. Répéter l'intégration pour chaque véhicule.
 

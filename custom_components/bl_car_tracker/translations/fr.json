@@ -7,7 +7,8 @@
         "data": {
           "name": "Nom du véhicule",
           "mac_address": "Adresse MAC Bluetooth du véhicule",
-          "picture": "Image (chemin ou URL, optionnel)"
+          "picture_file": "Image (glisser-déposer, optionnel)",
+          "picture": "Ou URL de l'image (optionnel)"
         }
       },
       "person": {
@@ -21,7 +22,8 @@
       }
     },
     "error": {
-      "invalid_mac": "Adresse MAC invalide. Format attendu : AA:BB:CC:DD:EE:FF."
+      "invalid_mac": "Adresse MAC invalide. Format attendu : AA:BB:CC:DD:EE:FF.",
+      "invalid_image": "Fichier non pris en charge. Utilisez une image PNG, JPG, GIF ou WebP."
     },
     "abort": {
       "already_configured": "Un véhicule avec cette adresse MAC est déjà configuré."
