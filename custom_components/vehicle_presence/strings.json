@@ -3,6 +3,7 @@
     "step": {
       "user": {
         "title": "Add a vehicle",
+        "description": "Each vehicle is identified by the Bluetooth MAC address of its on-board device (head unit, hands-free kit...).",
         "data": {
           "name": "Vehicle name",
           "mac_address": "Vehicle Bluetooth MAC address",
@@ -11,13 +12,19 @@
       },
       "person": {
         "title": "Link a person",
-        "description": "Pick the phone's Bluetooth sensor to watch and the matching person. The first person added is used as the fallback location source when nobody's phone is currently paired with the vehicle.",
+        "description": "Pick the phone's Bluetooth sensor (Companion app) and the matching person. The vehicle copies the position of the person whose phone is connected to it. If several phones are connected, the first person added wins.",
         "data": {
           "phone_sensor": "Phone Bluetooth sensor",
           "person": "Person",
           "add_another": "Add another person"
         }
       }
+    },
+    "error": {
+      "invalid_mac": "Invalid MAC address. Expected format: AA:BB:CC:DD:EE:FF."
+    },
+    "abort": {
+      "already_configured": "A vehicle with this MAC address is already configured."
     }
   }
 }

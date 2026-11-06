@@ -3,6 +3,7 @@
     "step": {
       "user": {
         "title": "Ajouter un véhicule",
+        "description": "Chaque véhicule est identifié par l'adresse MAC Bluetooth de son appareil embarqué (autoradio, kit mains libres...).",
         "data": {
           "name": "Nom du véhicule",
           "mac_address": "Adresse MAC Bluetooth du véhicule",
@@ -11,13 +12,19 @@
       },
       "person": {
         "title": "Associer une personne",
-        "description": "Choisissez le capteur Bluetooth du téléphone à surveiller ainsi que la personne correspondante. La première personne ajoutée sert de source de localisation par défaut lorsque aucun téléphone connu n'est appairé avec le véhicule.",
+        "description": "Choisissez le capteur Bluetooth du téléphone (app Companion) et la personne correspondante. Le véhicule copie la position de la personne dont le téléphone y est connecté. Si plusieurs téléphones sont connectés, la première personne ajoutée est prioritaire.",
         "data": {
           "phone_sensor": "Capteur Bluetooth du téléphone",
           "person": "Personne",
           "add_another": "Ajouter une autre personne"
         }
       }
+    },
+    "error": {
+      "invalid_mac": "Adresse MAC invalide. Format attendu : AA:BB:CC:DD:EE:FF."
+    },
+    "abort": {
+      "already_configured": "Un véhicule avec cette adresse MAC est déjà configuré."
     }
   }
 }

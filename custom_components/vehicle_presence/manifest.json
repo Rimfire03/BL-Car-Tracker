@@ -4,6 +4,7 @@
   "codeowners": ["@Rimfire03"],
   "config_flow": true,
   "dependencies": [],
+  "integration_type": "device",
   "documentation": "https://github.com/Rimfire03/Car-Tracker",
   "issue_tracker": "https://github.com/Rimfire03/Car-Tracker/issues",
   "iot_class": "calculated",

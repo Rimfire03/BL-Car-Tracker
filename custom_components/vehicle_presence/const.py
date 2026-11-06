@@ -8,4 +8,6 @@ CONF_PERSONS = "persons"
 CONF_PHONE_SENSOR = "phone_sensor"
 CONF_PERSON = "person"
 
-ATTR_CONNEXION = "connexion"
+ATTR_CONNECTED_PERSON = "connected_person"
+# Attribute exposed by the Home Assistant Companion app's Bluetooth sensor.
+ATTR_CONNECTED_PAIRED_DEVICES = "connected_paired_devices"

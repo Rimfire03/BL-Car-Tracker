@@ -1,11 +1,18 @@
 # Vehicle Presence (Car Tracker)
 
-Intégration Home Assistant qui détecte, pour chaque véhicule, quelle personne connue s'y trouve — en observant la liste des appareils Bluetooth appairés exposée par les capteurs de téléphone (ex. `sensor.sm_xxxx_bluetooth_connection`).
+Intégration Home Assistant qui donne une position à un véhicule (voiture, moto, vélo…) en copiant celle de la personne dont le téléphone est connecté en Bluetooth à ce véhicule. Un appareil Bluetooth (autoradio, kit mains libres…) identifie chaque véhicule.
 
-Pour chaque véhicule configuré, l'intégration crée une entité `binary_sensor` :
-- **état** : `on` si le téléphone d'au moins une personne connue est actuellement appairé avec le véhicule, `off` sinon
-- **attribut `connexion`** : l'entité `person.*` détectée (ou `null` si personne)
-- **attributs `latitude` / `longitude` / `gps_accuracy`** : repris de la personne détectée, avec repli sur la première personne configurée si aucun téléphone n'est actuellement appairé
+Prérequis : l'app **Home Assistant Companion pour Android**, qui expose le capteur `sensor.<téléphone>_bluetooth_connection` et son attribut `connected_paired_devices`. Ce capteur doit être activé dans l'app.
+
+## Entités créées (par véhicule)
+
+- **`device_tracker.<véhicule>`** : position du véhicule (GPS), utilisable sur la carte et dans les déclencheurs de zone.
+  - téléphone connecté : le véhicule suit la position de la personne ;
+  - téléphone déconnecté : la dernière position est conservée (place de stationnement), même après un redémarrage de Home Assistant.
+- **`binary_sensor.<véhicule>`** (occupation) : `on` tant que le téléphone d'une personne connue est connecté au véhicule.
+- Attribut `connected_person` sur les deux entités : l'entité `person.*` connectée, ou `null`.
+
+Si plusieurs téléphones sont connectés en même temps, la première personne configurée est prioritaire.
 
 ## Installation
 
@@ -24,9 +31,15 @@ Pour chaque véhicule configuré, l'intégration crée une entité `binary_senso
 
 Entièrement via l'interface (**Paramètres → Appareils et services → Ajouter une intégration → Vehicle Presence**) :
 
-1. Nom du véhicule, adresse MAC Bluetooth du véhicule, image optionnelle.
-2. Pour chaque personne à surveiller : le capteur Bluetooth du téléphone et la personne (`person.*`) correspondante. La première personne ajoutée sert de valeur par défaut (position affichée) quand aucun téléphone connu n'est appairé.
-3. Répéter l'intégration pour ajouter d'autres véhicules.
+1. Nom du véhicule, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle.
+2. Pour chaque personne : le capteur Bluetooth de son téléphone et la personne (`person.*`) correspondante.
+3. Répéter l'intégration pour chaque véhicule.
+
+Un même MAC ne peut être configuré qu'une fois.
+
+## Migration depuis des templates YAML
+
+Supprimer les anciens `binary_sensor` template (et leurs entrées du registre d'entités) avant d'ajouter le véhicule, pour que les nouvelles entités reprennent le même nom. Remplacer ensuite, dans les automatisations, le déclencheur de zone sur l'ancien `binary_sensor.<véhicule>` par `device_tracker.<véhicule>`.
 
 ## Statut du projet
 
