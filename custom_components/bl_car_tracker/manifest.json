@@ -1,14 +1,19 @@
 {
   "domain": "bl_car_tracker",
   "name": "BL Car Tracker",
-  "codeowners": ["@Rimfire03"],
+  "codeowners": [
+    "@Rimfire03"
+  ],
   "config_flow": true,
-  "dependencies": ["file_upload", "http"],
-  "integration_type": "device",
+  "dependencies": [
+    "file_upload",
+    "http"
+  ],
   "documentation": "https://github.com/Rimfire03/BL-Car-Tracker",
-  "issue_tracker": "https://github.com/Rimfire03/BL-Car-Tracker/issues",
+  "integration_type": "device",
   "iot_class": "calculated",
-  "single_config_entry": true,
+  "issue_tracker": "https://github.com/Rimfire03/BL-Car-Tracker/issues",
   "requirements": [],
+  "single_config_entry": true,
   "version": "0.3.0"
 }
