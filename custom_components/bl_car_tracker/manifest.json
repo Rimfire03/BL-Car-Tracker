@@ -5,8 +5,8 @@
   "config_flow": true,
   "dependencies": [],
   "integration_type": "device",
-  "documentation": "https://github.com/Rimfire03/Car-Tracker",
-  "issue_tracker": "https://github.com/Rimfire03/Car-Tracker/issues",
+  "documentation": "https://github.com/Rimfire03/BL-Car-Tracker",
+  "issue_tracker": "https://github.com/Rimfire03/BL-Car-Tracker/issues",
   "iot_class": "calculated",
   "requirements": [],
   "version": "0.1.0"

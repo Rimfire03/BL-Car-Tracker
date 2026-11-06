@@ -18,7 +18,7 @@ Si plusieurs téléphones sont connectés en même temps, la première personne 
 
 ### Via HACS (dépôt personnalisé)
 
-1. HACS → menu (⋮) → **Dépôts personnalisés** → ajouter `https://github.com/Rimfire03/Car-Tracker`, catégorie *Intégration*.
+1. HACS → menu (⋮) → **Dépôts personnalisés** → ajouter `https://github.com/Rimfire03/BL-Car-Tracker`, catégorie *Intégration*.
 2. Rechercher **BL Car Tracker** dans HACS et installer.
 3. Redémarrer Home Assistant.
 
