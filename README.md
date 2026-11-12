@@ -62,7 +62,7 @@ Entirely from the UI: **Settings → Devices & services → Add integration → 
 
 1. Add the integration once, then use its **Add person** and **Add vehicle** buttons.
 2. **Person:** a `person.*` entity and the Bluetooth sensor of their phone (the equipment).
-3. **Vehicle:** name, Bluetooth MAC address of its on-board device (`AA:BB:CC:DD:EE:FF`, visible in the `paired_devices` attribute of the phone sensor), optional picture (dropped file or URL). A dropped image is copied to `<config>/bl_car_tracker/`, served at `/bl_car_tracker/...` and deleted with the vehicle.
+3. **Vehicle:** name, Bluetooth MAC address of its on-board device (`AA:BB:CC:DD:EE:FF`, visible in the `paired_devices` attribute of the phone sensor), optional picture (dropped file or URL). A dropped image is copied to `<config>/bl_car_tracker/`, exposed through an authenticated `image` entity (never served publicly) and deleted with the vehicle.
 4. Persons and vehicles can be edited or deleted at any time. A MAC address can only be used once.
 
 ## 🔄 Upgrading
@@ -121,7 +121,7 @@ Entièrement depuis l'interface : **Paramètres → Appareils et services → Aj
 
 1. Ajoutez l'intégration une seule fois, puis utilisez ses boutons **Ajouter une personne** et **Ajouter un véhicule**.
 2. **Personne :** une entité `person.*` et le capteur Bluetooth de son téléphone (l'équipement).
-3. **Véhicule :** nom, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle (fichier déposé ou URL). Une image déposée est copiée dans `<config>/bl_car_tracker/`, servie sur `/bl_car_tracker/...` et supprimée avec le véhicule.
+3. **Véhicule :** nom, adresse MAC Bluetooth de son appareil embarqué (`AA:BB:CC:DD:EE:FF`, visible dans l'attribut `paired_devices` du capteur du téléphone), image optionnelle (fichier déposé ou URL). Une image déposée est copiée dans `<config>/bl_car_tracker/`, exposée par une entité `image` authentifiée (jamais servie publiquement) et supprimée avec le véhicule.
 4. Personnes et véhicules peuvent être modifiés ou supprimés à tout moment. Une adresse MAC ne peut être utilisée qu'une fois.
 
 ## 🔄 Mise à jour

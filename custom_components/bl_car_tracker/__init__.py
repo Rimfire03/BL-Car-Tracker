@@ -4,17 +4,18 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 
-from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.typing import ConfigType
 
-from .const import CONF_PICTURE, DOMAIN, MEDIA_URL, SUBENTRY_VEHICLE
+from .const import CONF_PICTURE, DOMAIN, SUBENTRY_VEHICLE
 from .media import media_path, prune_pictures
 from .migration import async_migrate_legacy_entries
 
+# Images first: the other entities mirror the signed picture URL of their image.
+IMAGE_PLATFORMS = [Platform.IMAGE]
 PLATFORMS = [Platform.BINARY_SENSOR, Platform.DEVICE_TRACKER]
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
@@ -27,23 +28,21 @@ def _pictures(entry: ConfigEntry) -> Iterator[str | None]:
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Serve uploaded vehicle pictures."""
+    """Create the picture directory and migrate version 1 entries."""
     directory = media_path(hass)
     await hass.async_add_executor_job(
         lambda: directory.mkdir(parents=True, exist_ok=True)
-    )
-    await hass.http.async_register_static_paths(
-        [StaticPathConfig(MEDIA_URL, str(directory), cache_headers=False)]
     )
     await async_migrate_legacy_entries(hass)
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up BL Car Tracker: one tracker and one sensor per vehicle subentry."""
+    """Set up BL Car Tracker: a tracker, a sensor and an image per vehicle."""
     await hass.async_add_executor_job(prune_pictures, hass, set(_pictures(entry)))
     # Adding, editing or removing a person or vehicle reloads the entry.
     entry.async_on_unload(entry.add_update_listener(_async_reload))
+    await hass.config_entries.async_forward_entry_setups(entry, IMAGE_PLATFORMS)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
@@ -54,7 +53,9 @@ async def _async_reload(hass: HomeAssistant, entry: ConfigEntry) -> None:
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload BL Car Tracker."""
-    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+    return await hass.config_entries.async_unload_platforms(
+        entry, IMAGE_PLATFORMS + PLATFORMS
+    )
 
 
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
