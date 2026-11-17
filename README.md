@@ -1,6 +1,6 @@
 # 🚗 BL Car Tracker
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub release](https://img.shields.io/github/v/release/Rimfire03/BL-Car-Tracker?include_prereleases)](https://github.com/Rimfire03/BL-Car-Tracker/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-orange.svg?logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/slide598b)
@@ -45,12 +45,11 @@ Requires the **Home Assistant Companion app for Android**, which exposes `sensor
 
 ## 📦 Installation
 
-### Method 1: Via HACS (custom repository)
+### Method 1: Via HACS (default store)
 
-1. In Home Assistant, open **HACS** → menu (⋮) → **Custom repositories**.
-2. Add `https://github.com/Rimfire03/BL-Car-Tracker`, category **Integration**.
-3. Search for **BL Car Tracker** in HACS and click **Download**.
-4. Restart Home Assistant.
+1. In Home Assistant, open **HACS** and search for **BL Car Tracker**.
+2. Click **Download**.
+3. Restart Home Assistant.
 
 ### Method 2: Manual
 
@@ -104,12 +103,11 @@ Nécessite l'**app Home Assistant Companion pour Android**, qui expose `sensor.<
 
 ## 📦 Installation
 
-### Méthode 1 : Via HACS (dépôt personnalisé)
+### Méthode 1 : Via HACS (store par défaut)
 
-1. Dans Home Assistant, ouvrez **HACS** → menu (⋮) → **Dépôts personnalisés**.
-2. Ajoutez `https://github.com/Rimfire03/BL-Car-Tracker`, catégorie **Intégration**.
-3. Recherchez **BL Car Tracker** dans HACS et cliquez sur **Télécharger**.
-4. Redémarrez Home Assistant.
+1. Dans Home Assistant, ouvrez **HACS** et recherchez **BL Car Tracker**.
+2. Cliquez sur **Télécharger**.
+3. Redémarrez Home Assistant.
 
 ### Méthode 2 : Manuelle
 
